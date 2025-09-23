@@ -4,7 +4,7 @@ As of 23 Sep 2025, security updates created by Dependabot and Mend Renovate bot 
 
 ## Dependabot
 
-Dependabot updates will fail, showing `Dependabot encountered an unknown error`:
+Dependabot updates will fail (creating no PRs), showing `Dependabot encountered an unknown error`:
 
 <img width="1436" height="497" alt="Screenshot 2025-09-23 at 17 59 08" src="https://github.com/user-attachments/assets/9429d638-5dd1-4854-91eb-85baf917b72d" /><br /><br />
 
@@ -621,8 +621,168 @@ Cleaning up orphan processes
 
 ## Renovate bot
 
+Renovate bot will create [the PRs](https://github.com/karlhorky/repro-conflicting-dependabot-and-renovate-config-vs-pnpm-minimumReleaseAge/pull/1) successfully, but also add [an "Artifact update problem" comment](https://github.com/karlhorky/repro-conflicting-dependabot-and-renovate-config-vs-pnpm-minimumReleaseAge/pull/1#issuecomment-3324652627), showing that the PR should not be merged as-is:
+
+````
+> ### ⚠️ Artifact update problem
+> Renovate failed to update an artifact related to this branch. You probably do not want to merge this PR as-is.
+>
+> ♻ Renovate will retry this branch, including artifacts, only when one of the following happens:
+>
+> * any of the package files in this branch needs updating, or
+> * the branch becomes conflicted, or
+> * you click the rebase/retry checkbox if found above, or
+> * you rename this PR's title to start with "rebase!" to trigger it manually
+>
+> The artifact failure details are included below:
+>
+> ##### File name: pnpm-lock.yaml
+> ```
+>  ERR_PNPM_NO_MATCHING_VERSION  No matching version found for @types/react-dom@^19 published by Mon Sep 14 1987 18:43:13 GMT+0000 (Coordinated Universal Time) while fetching it from https://registry.npmjs.org/. Version 19.1.9 satisfies the specs but was released at Thu Aug 28 2025 12:02:47 GMT+0000 (Coordinated Universal Time)
+>
+> This error happened while installing a direct dependency of /tmp/renovate/repos/github/karlhorky/repro-conflicting-dependabot-and-renovate-config-vs-pnpm-minimumReleaseAge
+>
+> The latest release of @types/react-dom is "19.1.9". Published at 8/28/2025
+>
+> Other releases are:
+>   * ts2.0: 0.14.20 published at 12/30/2016
+>   * ts2.2: 15.5.0 published at 4/18/2017
+>   * ts2.1: 15.5.0 published at 4/18/2017
+>   * ts2.4: 16.0.3 published at 11/9/2017
+>   * ts2.5: 16.0.3 published at 11/9/2017
+>   * ts2.3: 16.0.3 published at 11/9/2017
+>   * ts2.7: 16.0.6 published at 6/5/2018
+>   * ts2.6: 16.0.6 published at 6/5/2018
+>   * ts2.8: 16.9.7 published at 4/27/2020
+>   * ts3.0: 16.9.8 published at 5/11/2020
+>   * ts3.1: 16.9.8 published at 5/11/2020
+>   * ts2.9: 16.9.8 published at 5/11/2020
+>   * ts3.2: 16.9.9 published at 10/27/2020
+>   * ts3.3: 17.0.0 published at 11/20/2020
+>   * ts3.4: 17.0.1 published at 2/12/2021
+>   * ts3.5: 17.0.5 published at 5/13/2021
+>   * ts3.6: 17.0.9 published at 7/7/2021
+>   * ts3.7: 17.0.11 published at 11/3/2021
+>   * ts3.8: 17.0.11 published at 11/3/2021
+>   * ts3.9: 18.0.5 published at 5/23/2022
+>   * ts4.0: 18.0.6 published at 7/5/2022
+>   * ts4.1: 18.0.9 published at 11/14/2022
+>   * ts4.2: 18.0.11 published at 2/15/2023
+>   * ts4.3: 18.2.7 published at 7/12/2023
+>   * ts4.4: 18.2.7 published at 7/12/2023
+>   * ts4.5: 18.2.17 published at 11/22/2023
+>   * ts4.6: 18.2.21 published at 3/6/2024
+>   * ts4.7: 18.3.0 published at 4/25/2024
+>   * ts4.9: 18.3.1 published at 10/11/2024
+>   * ts4.8: 18.3.1 published at 10/11/2024
+>   * ts5.0: 19.0.4 published at 2/17/2025
+>   * ts5.1: 19.1.7 published at 7/29/2025
+>   * ts6.0: 19.1.9 published at 8/28/2025
+>   * ts5.4: 19.1.9 published at 8/28/2025
+>   * ts5.5: 19.1.9 published at 8/28/2025
+>   * ts5.2: 19.1.9 published at 8/28/2025
+>   * ts5.6: 19.1.9 published at 8/28/2025
+>   * ts5.7: 19.1.9 published at 8/28/2025
+>   * ts5.9: 19.1.9 published at 8/28/2025
+>   * ts5.3: 19.1.9 published at 8/28/2025
+>   * ts5.8: 19.1.9 published at 8/28/2025
+>
+> If you need the full list of all 176 published versions run "$ pnpm view @types/react-dom versions".
+>
+> If you want to install the matched version ignoring the time it was published, you can add the package name to the minimumReleaseAgeExclude setting. Read more about it: https://pnpm.io/settings#minimumreleaseageexclude
+> ```
+````
+
 Logs from Renovate bot failing update run:
 
 ```
+INFO: Repository started
+{
+  "renovateVersion": "41.97.10"
+}
 
+INFO: Dependency extraction complete
+{
+  "baseBranch": "main"
+  "stats": {
+    "managers": {
+      "npm": {
+        "fileCount": 1,
+        "depCount": 7
+      }
+    },
+    "total": {
+      "fileCount": 1,
+      "depCount": 7
+    }
+  }
+}
+
+INFO: Branch created (branch="renovate/npm-next-vulnerability")
+{
+  "commitSha": "b720ae6a90a4766eab148d92760928522596161c"
+}
+
+INFO: PR created (branch="renovate/npm-next-vulnerability")
+{
+  "pr": 1
+  "prTitle": "Update dependency next to v15.4.7 [SECURITY]"
+}
+
+WARN: artifactErrors (branch="renovate/npm-next-vulnerability")
+{
+  "artifactErrors": [
+    {
+      "lockFile": "pnpm-lock.yaml",
+      "stderr": " ERR_PNPM_NO_MATCHING_VERSION  No matching version found for @types/react-dom@^19 published by Mon Sep 14 1987 18:43:13 GMT+0000 (Coordinated Universal Time) while fetching it from https://registry.npmjs.org/. Version 19.1.9 satisfies the specs but was released at Thu Aug 28 2025 12:02:47 GMT+0000 (Coordinated Universal Time)\n\nThis error happened while installing a direct dependency of /tmp/renovate/repos/github/karlhorky/repro-conflicting-dependabot-and-renovate-config-vs-pnpm-minimumReleaseAge\n\nThe latest release of @types/react-dom is \"19.1.9\". Published at 8/28/2025\n\nOther releases are:\n  * ts2.0: 0.14.20 published at 12/30/2016\n  * ts2.2: 15.5.0 published at 4/18/2017\n  * ts2.1: 15.5.0 published at 4/18/2017\n  * ts2.4: 16.0.3 published at 11/9/2017\n  * ts2.5: 16.0.3 published at 11/9/2017\n  * ts2.3: 16.0.3 published at 11/9/2017\n  * ts2.7: 16.0.6 published at 6/5/2018\n  * ts2.6: 16.0.6 published at 6/5/2018\n  * ts2.8: 16.9.7 published at 4/27/2020\n  * ts3.0: 16.9.8 published at 5/11/2020\n  * ts3.1: 16.9.8 published at 5/11/2020\n  * ts2.9: 16.9.8 published at 5/11/2020\n  * ts3.2: 16.9.9 published at 10/27/2020\n  * ts3.3: 17.0.0 published at 11/20/2020\n  * ts3.4: 17.0.1 published at 2/12/2021\n  * ts3.5: 17.0.5 published at 5/13/2021\n  * ts3.6: 17.0.9 published at 7/7/2021\n  * ts3.7: 17.0.11 published at 11/3/2021\n  * ts3.8: 17.0.11 published at 11/3/2021\n  * ts3.9: 18.0.5 published at 5/23/2022\n  * ts4.0: 18.0.6 published at 7/5/2022\n  * ts4.1: 18.0.9 published at 11/14/2022\n  * ts4.2: 18.0.11 published at 2/15/2023\n  * ts4.3: 18.2.7 published at 7/12/2023\n  * ts4.4: 18.2.7 published at 7/12/2023\n  * ts4.5: 18.2.17 published at 11/22/2023\n  * ts4.6: 18.2.21 published at 3/6/2024\n  * ts4.7: 18.3.0 published at 4/25/2024\n  * ts4.9: 18.3.1 published at 10/11/2024\n  * ts4.8: 18.3.1 published at 10/11/2024\n  * ts5.0: 19.0.4 published at 2/17/2025\n  * ts5.1: 19.1.7 published at 7/29/2025\n  * ts6.0: 19.1.9 published at 8/28/2025\n  * ts5.4: 19.1.9 published at 8/28/2025\n  * ts5.5: 19.1.9 published at 8/28/2025\n  * ts5.2: 19.1.9 published at 8/28/2025\n  * ts5.6: 19.1.9 published at 8/28/2025\n  * ts5.7: 19.1.9 published at 8/28/2025\n  * ts5.9: 19.1.9 published at 8/28/2025\n  * ts5.3: 19.1.9 published at 8/28/2025\n  * ts5.8: 19.1.9 published at 8/28/2025\n\nIf you need the full list of all 176 published versions run \"$ pnpm view @types/react-dom versions\".\n\nIf you want to install the matched version ignoring the time it was published, you can add the package name to the minimumReleaseAgeExclude setting. Read more about it: https://pnpm.io/settings#minimumreleaseageexclude\n"
+    }
+  ]
+}
+
+INFO: Comment added (branch="renovate/npm-next-vulnerability")
+{
+  "issueNo": 1
+  "topic": "⚠️ Artifact update problem"
+}
+
+INFO: Branch created (branch="renovate/node-22.x")
+{
+  "commitSha": "7c9a9b72cb9f329bdff770a9e7bf99d12e158ce6"
+}
+
+INFO: PR created (branch="renovate/node-22.x")
+{
+  "pr": 2
+  "prTitle": "Update dependency @types/node to v22"
+}
+
+WARN: artifactErrors (branch="renovate/node-22.x")
+{
+  "artifactErrors": [
+    {
+      "lockFile": "pnpm-lock.yaml",
+      "stderr": " ERR_PNPM_NO_MATCHING_VERSION  No matching version found for @types/react-dom@^19 published by Mon Sep 14 1987 18:43:28 GMT+0000 (Coordinated Universal Time) while fetching it from https://registry.npmjs.org/. Version 19.1.9 satisfies the specs but was released at Thu Aug 28 2025 12:02:47 GMT+0000 (Coordinated Universal Time)\n\nThis error happened while installing a direct dependency of /tmp/renovate/repos/github/karlhorky/repro-conflicting-dependabot-and-renovate-config-vs-pnpm-minimumReleaseAge\n\nThe latest release of @types/react-dom is \"19.1.9\". Published at 8/28/2025\n\nOther releases are:\n  * ts2.0: 0.14.20 published at 12/30/2016\n  * ts2.2: 15.5.0 published at 4/18/2017\n  * ts2.1: 15.5.0 published at 4/18/2017\n  * ts2.4: 16.0.3 published at 11/9/2017\n  * ts2.5: 16.0.3 published at 11/9/2017\n  * ts2.3: 16.0.3 published at 11/9/2017\n  * ts2.7: 16.0.6 published at 6/5/2018\n  * ts2.6: 16.0.6 published at 6/5/2018\n  * ts2.8: 16.9.7 published at 4/27/2020\n  * ts3.0: 16.9.8 published at 5/11/2020\n  * ts3.1: 16.9.8 published at 5/11/2020\n  * ts2.9: 16.9.8 published at 5/11/2020\n  * ts3.2: 16.9.9 published at 10/27/2020\n  * ts3.3: 17.0.0 published at 11/20/2020\n  * ts3.4: 17.0.1 published at 2/12/2021\n  * ts3.5: 17.0.5 published at 5/13/2021\n  * ts3.6: 17.0.9 published at 7/7/2021\n  * ts3.7: 17.0.11 published at 11/3/2021\n  * ts3.8: 17.0.11 published at 11/3/2021\n  * ts3.9: 18.0.5 published at 5/23/2022\n  * ts4.0: 18.0.6 published at 7/5/2022\n  * ts4.1: 18.0.9 published at 11/14/2022\n  * ts4.2: 18.0.11 published at 2/15/2023\n  * ts4.3: 18.2.7 published at 7/12/2023\n  * ts4.4: 18.2.7 published at 7/12/2023\n  * ts4.5: 18.2.17 published at 11/22/2023\n  * ts4.6: 18.2.21 published at 3/6/2024\n  * ts4.7: 18.3.0 published at 4/25/2024\n  * ts4.9: 18.3.1 published at 10/11/2024\n  * ts4.8: 18.3.1 published at 10/11/2024\n  * ts5.0: 19.0.4 published at 2/17/2025\n  * ts5.1: 19.1.7 published at 7/29/2025\n  * ts6.0: 19.1.9 published at 8/28/2025\n  * ts5.4: 19.1.9 published at 8/28/2025\n  * ts5.5: 19.1.9 published at 8/28/2025\n  * ts5.2: 19.1.9 published at 8/28/2025\n  * ts5.6: 19.1.9 published at 8/28/2025\n  * ts5.7: 19.1.9 published at 8/28/2025\n  * ts5.9: 19.1.9 published at 8/28/2025\n  * ts5.3: 19.1.9 published at 8/28/2025\n  * ts5.8: 19.1.9 published at 8/28/2025\n\nIf you need the full list of all 176 published versions run \"$ pnpm view @types/react-dom versions\".\n\nIf you want to install the matched version ignoring the time it was published, you can add the package name to the minimumReleaseAgeExclude setting. Read more about it: https://pnpm.io/settings#minimumreleaseageexclude\n"
+    }
+  ]
+}
+
+INFO: Comment added (branch="renovate/node-22.x")
+{
+  "issueNo": 2
+  "topic": "⚠️ Artifact update problem"
+}
+
+INFO: Issue created
+INFO: Cache fallback URLs
+{
+  "count": 0
+  "hits": {}
+  "oldLevel": "debug"
+}
+
+INFO: Repository finished
+{
+  "cloned": true
+  "durationMs": 42588
+}
 ```
