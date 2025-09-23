@@ -6,7 +6,7 @@ As of 23 Sep 2025, security updates created by Dependabot and Mend Renovate bot 
 
 Dependabot updates will fail, showing `Dependabot encountered an unknown error`:
 
-<img width="1436" height="497" alt="Screenshot 2025-09-23 at 17 59 08" src="https://github.com/user-attachments/assets/9429d638-5dd1-4854-91eb-85baf917b72d" />
+<img width="1436" height="497" alt="Screenshot 2025-09-23 at 17 59 08" src="https://github.com/user-attachments/assets/9429d638-5dd1-4854-91eb-85baf917b72d" /><br /><br />
 
 Logs from [GitHub Actions failing workflow run](https://github.com/karlhorky/repro-conflicting-dependabot-and-renovate-config-vs-pnpm-minimumReleaseAge/actions/runs/17951882827/job/51053186179):
 
