@@ -623,11 +623,11 @@ Cleaning up orphan processes
 
 Renovate bot will create [the PRs](https://github.com/karlhorky/repro-conflicting-dependabot-and-renovate-config-vs-pnpm-minimumReleaseAge/pull/1) successfully:
 
-<img width="1438" height="758" alt="Screenshot 2025-09-23 at 18 04 53" src="https://github.com/user-attachments/assets/390e62b3-4e28-41dc-a540-dae0803284d8" />
+<img width="1438" height="758" alt="Screenshot 2025-09-23 at 18 04 53" src="https://github.com/user-attachments/assets/390e62b3-4e28-41dc-a540-dae0803284d8" /><br /><br />
 
 ...but also add [an "Artifact update problem" comment](https://github.com/karlhorky/repro-conflicting-dependabot-and-renovate-config-vs-pnpm-minimumReleaseAge/pull/1#issuecomment-3324652627), showing that the PR should not be merged as-is:
 
-<img width="1439" height="1077" alt="Screenshot 2025-09-23 at 18 05 20" src="https://github.com/user-attachments/assets/8504e8ff-c334-42f1-bc47-8cf1cfc8a291" />
+<img width="1439" height="1077" alt="Screenshot 2025-09-23 at 18 05 20" src="https://github.com/user-attachments/assets/8504e8ff-c334-42f1-bc47-8cf1cfc8a291" /><br /><br />
 
 ````
 > ### ⚠️ Artifact update problem
