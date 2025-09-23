@@ -4,7 +4,9 @@ As of 23 Sep 2025, security updates created by Dependabot and Mend Renovate bot 
 
 ## Dependabot
 
-Logs from GitHub Actions failing workflow run:
+Dependabot updates will fail, showing `Dependabot encountered an unknown error`:
+
+Logs from [GitHub Actions failing workflow run](https://github.com/karlhorky/repro-conflicting-dependabot-and-renovate-config-vs-pnpm-minimumReleaseAge/actions/runs/17951882827/job/51053186179):
 
 ```
 Current runner version: '2.328.0'
