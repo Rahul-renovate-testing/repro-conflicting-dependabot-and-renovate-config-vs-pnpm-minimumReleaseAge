@@ -2,3 +2,5 @@
 minimumReleaseAge: 20000000
 minimumReleaseAgeExclude:
   - '@types/*'
+  # Renovate security update: next@15.4.7
+  - next@15.4.7
