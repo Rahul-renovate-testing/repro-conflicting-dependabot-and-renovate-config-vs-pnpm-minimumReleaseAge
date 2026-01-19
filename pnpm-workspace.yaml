@@ -1,2 +1,5 @@
 # Longer than 7 months (current age of next@15.1.7)
 minimumReleaseAge: 20000000
+minimumReleaseAgeExclude:
+  # Renovate security update: next@15.4.7
+  - next@15.4.7
