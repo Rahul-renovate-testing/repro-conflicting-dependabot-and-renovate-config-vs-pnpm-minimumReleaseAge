@@ -1,2 +1,4 @@
 # Longer than 7 months (current age of next@15.1.7)
 minimumReleaseAge: 20000000
+minimumReleaseAgeExclude:
+  - @types/react-dom
